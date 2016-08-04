@@ -1,0 +1,32 @@
+_repo: Black-Caesar-s-Clan---A-Florida-Mystery-Story_4789
+_version: 0.0.1
+creator:
+  author:
+    agent_name: Terhune, Albert Payson
+    birthdate: 1872
+    deathdate: 1942
+    gutenberg_agent_id: '891'
+    url: http://www.gutenberg.org/2009/agents/891
+    wikipedia: http://en.wikipedia.org/wiki/Albert_Payson_Terhune
+description: The original 'Black Caesar' was a legendary African pirate who made his
+  fortune by repeatedly raiding cargo ships in the area around the Florida Keys. In
+  this imaginative novel from popular American author Albert Payson Terhune, the fearsome
+  pirate's descendents are determined to find his buried loot -- and to run off any
+  interlopers who might be after the same prize.
+gutenberg_issued: '2003-12-01'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '4789'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Adventure stories'
+- !lcc 'PS'
+- !lcsh 'Florida -- Fiction'
+- !lcsh 'Everglades (Fla.) -- Fiction'
+- !lcsh 'Mystery fiction'
+- GITenberg
+title: 'Black Caesar''s Clan : A Florida Mystery Story'
+url: http://www.gutenberg.org/ebooks/4789
