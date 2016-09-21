@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: bIq9NGFd6xwNmapI85tElLeDvYZAhWiP0hPEpySrDBYxBNxHJ8+3iNaIJfwzEK38DqtgXGjDC+vxbot0POHNcpeeLJtEFgrzbBPDBfC3zAZ+ghGC4BRTHFGUq6tMp7TNXzxV+eISYUXh2Qw3z6KN9FODZBKkCfiVMMpN50Xf2iCnwmFmvogRHAD5kYdo/anXu0Fe+VOL462OFKdbIi38HtqWwrr4Gg0lizQ2j7awXY+V6FZ8d0C7VYSq8zrlNZsCeUxhKBlLQG2m4t+rv+5Cf46Q0sf5pQghbbk9PS4Mc0UuS2+EpJ9BJmWbluJAl32Y+BTIj1B7xR8hV0ZYoWuzZ/J0VNHe1Z3OFE+7MKboaZT5FiIGbdk9ZFQ5znlElT+fOVlGNBhkSINbZBElUvk4jSzW1bodT2SFAkM4HyD4AR5USdnN+LrABCRzGkCHtbujBzoe7uCQ7WDz13ZuLe2mSUBmGYgbZUnwYsuI2TLsEjSsxt9UadGUEKtJPfvYit8k5EOriOf4lwW7biDKWdz9KOCyXkycu9lTJbN2STsBUUZimbysZNEPuPlFHtpq5imr/7FxVJQixbTVo1b8rH9OP0aUI7yZvODXz29FnvuCk0iHumVFT4+cpClnHbr9fY/jyZHD2jCLNFoEiok16cK1qgJgECttr5TdfAtHi/hzvss=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/Black-Caesar-s-Clan---A-Florida-Mystery-Story_4789
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
